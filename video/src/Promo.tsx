@@ -1,7 +1,9 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Audio,
   Img,
+  Sequence,
   interpolate,
   spring,
   staticFile,
@@ -250,11 +252,35 @@ const SceneOutro: React.FC = () => {
   );
 };
 
+const AudioTrack: React.FC = () => (
+  <>
+    <Audio
+      src={staticFile("audio/bgm.mp3")}
+      volume={(f) => interpolate(f, [0, 24, 556, 600], [0, 0.28, 0.28, 0], clamp)}
+    />
+    {/* 结果出来那一刻的打字声 */}
+    <Sequence from={194} durationInFrames={44}>
+      <Audio src={staticFile("audio/sfx/typing.mp3")} volume={0.3} endAt={44} />
+    </Sequence>
+    {/* 三张能力卡逐张落位的轻点 */}
+    <Sequence from={392} durationInFrames={9}>
+      <Audio src={staticFile("audio/sfx/click.mp3")} volume={0.24} />
+    </Sequence>
+    <Sequence from={403} durationInFrames={9}>
+      <Audio src={staticFile("audio/sfx/click.mp3")} volume={0.24} />
+    </Sequence>
+    <Sequence from={414} durationInFrames={9}>
+      <Audio src={staticFile("audio/sfx/click.mp3")} volume={0.24} />
+    </Sequence>
+  </>
+);
+
 export const Promo: React.FC = () => {
   const frame = useCurrentFrame();
 
   return (
     <AbsoluteFill style={{ backgroundColor: BG_TOP }}>
+      <AudioTrack />
       <Backdrop />
       {frame < 90 && <SceneIntro />}
       {frame >= 90 && frame < 210 && <SceneTaskbar />}
