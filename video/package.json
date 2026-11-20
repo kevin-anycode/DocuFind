@@ -1,0 +1,22 @@
+{
+  "name": "docufind-promo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "DocuFind 产品介绍视频（Remotion）",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts DocuFindPromo out/promo.mp4 --codec=h264 --crf=18",
+    "still": "remotion still src/index.ts DocuFindPromo out/still.png"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.409",
+    "ffmpeg-static": "^5.3.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.409"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "typescript": "5.6.3"
+  }
+}

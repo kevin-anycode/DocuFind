@@ -31,4 +31,13 @@
     <Content Include="..\..\models\vocab.txt" Link="models\vocab.txt" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
+  <!--
+    dotnet publish 不会把应用自己的 .pri（XAML 资源索引）带进输出目录，
+    缺了它启动时 InitializeComponent 会抛 XamlParseException。
+    这里在 publish 之后补一次拷贝，保证发布目录可以独立运行。
+  -->
+  <Target Name="CopyPriToPublish" AfterTargets="Publish" Condition="Exists('$(TargetDir)$(TargetName).pri')">
+    <Copy SourceFiles="$(TargetDir)$(TargetName).pri" DestinationFolder="$(PublishDir)" SkipUnchangedFiles="true" />
+  </Target>
+
 </Project>

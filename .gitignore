@@ -10,3 +10,6 @@ models/
 *.db
 *.db-shm
 *.db-wal
+
+# 安装包输出
+dist/

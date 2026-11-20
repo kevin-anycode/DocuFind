@@ -8,6 +8,24 @@
 装好之后它就安静地待在任务栏里，需要时按 `Ctrl + Alt + Space` 叫出来。
 不用注册、不用 API Key，也不往云端传任何东西。
 
+<img src="assets/readme/docufind-promo.gif" alt="DocuFind 演示：把文件拖进任务栏的搜索框，之后一句话搜到里面的原文" width="100%">
+
+> 20 秒看完：拖进去、打一句话、直接跳到你记得的那一段。[看 1200×675 版](assets/readme/docufind-promo.mp4)
+
+## 下载安装
+
+> **Windows 11 x64 · 71.7 MB · 免管理员**
+>
+> **⬇ [下载 DocuFind-Setup-1.0.0.exe](https://gitee.com/kevin-anycode/DocuFind/releases/download/v1.0.0/DocuFind-Setup-1.0.0.exe)**
+>
+> 双击安装 → 开始菜单出现「DocuFind」→ 打开后把文件拖到胶囊上就能搜了。
+
+- 装到 `%LOCALAPPDATA%\Programs\DocuFind`，不需要管理员权限，也不会动系统目录
+- **自带 .NET 8 和 Windows App SDK 运行时**，目标机器不用另装任何东西
+- 模型（23 MB）已经打进安装包，装完就能语义检索
+- 卸载在「设置 → 应用」里；索引和设置留在 `%LOCALAPPDATA%\DocuFind`，想彻底清干净删掉这个目录即可
+- 首次启动如果 Windows 拦了「未知发布者」，是因为安装包没有代码签名，点「更多信息 → 仍要运行」
+
 ## 它长什么样
 
 装好之后，任务栏右边那块空档里会多出这样一条：
@@ -113,7 +131,9 @@ Windows 11 没有给第三方留任务栏槽位 API。把窗口 `SetParent` 到 
   bge 对任何中文都有 0.30–0.40 的底噪，不设门槛时随手打一串「啊啊啊啊」也能把整库排出来；
   实测真相关查询 top1 落在 0.46–0.70，无关内容都在 0.39 以下。两路都不够像，面板就老老实实显示「没有找到」。
 
-## 跑起来
+## 从源码跑
+
+只想用的话，上面的安装包就够了；下面是从源码构建：
 
 ```powershell
 # 1. 拉模型（约 23 MB，只需一次）
