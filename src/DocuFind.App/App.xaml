@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application
+    x:Class="DocuFind.App.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--
+                这个工具自己的表面色板，全部按“深/浅”两套主题给出。
+                按钮、菜单、工具提示等标准控件直接用 WinUI 系统资源；
+                这里只定义胶囊、结果面板、结果行这几块专属表面。
+                命名与 Fluent 的说法对齐：Fill = 表面，Foreground = 文字，Stroke = 描边。
+            -->
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <!--
+                        胶囊的底正常情况下由代码按“任务栏实际颜色”现算（PillWindow.ApplyTaskbarTint），
+                        这两个画刷只是还没取到颜色时（启动头一帧 / 取色失败）的兜底，
+                        底下那层亚克力材质负责兜住这半透明的一层。
+                    -->
+                    <LinearGradientBrush x:Key="PillFill" StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Offset="0" Color="#1BB4CED8" />
+                        <GradientStop Offset="1" Color="#13B4CED8" />
+                    </LinearGradientBrush>
+                    <LinearGradientBrush x:Key="PillFillHover" StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Offset="0" Color="#2CB4CED8" />
+                        <GradientStop Offset="1" Color="#22B4CED8" />
+                    </LinearGradientBrush>
+                    <SolidColorBrush x:Key="PillStrokeIdle" Color="#24FFFFFF" />
+                    <SolidColorBrush x:Key="PillStrokeHover" Color="#3DFFFFFF" />
+
+                    <!-- 取色成功前（启动头一帧 / 取色失败）窗口矩形用的兜底色，取任务栏的典型值 -->
+                    <SolidColorBrush x:Key="PillBackdrop" Color="#1E2023" />
+
+                    <!-- 结果面板：浮在任务栏上方的弹出层 -->
+                    <SolidColorBrush x:Key="PanelFill" Color="#E11A1B1F" />
+                    <SolidColorBrush x:Key="PanelStroke" Color="#2EFFFFFF" />
+                    <SolidColorBrush x:Key="CardFill" Color="#1AFFFFFF" />
+
+                    <SolidColorBrush x:Key="MutedForeground" Color="#A2A6AC" />
+                    <SolidColorBrush x:Key="SnippetForeground" Color="#C2C6CD" />
+                    <SolidColorBrush x:Key="StrongForeground" Color="#F3F4F6" />
+                    <Color x:Key="PillPlaceholderColor">#FFC9CCD1</Color>
+
+                    <SolidColorBrush x:Key="HoverFill" Color="#14FFFFFF" />
+                    <SolidColorBrush x:Key="SelectedFill" Color="#24FFFFFF" />
+                    <SolidColorBrush x:Key="BadgeFill" Color="#1CFFFFFF" />
+                    <SolidColorBrush x:Key="DividerFill" Color="#1FFFFFFF" />
+                    <SolidColorBrush x:Key="HighlightForeground" Color="#8FD0FF" />
+
+                    <!-- 拖放提示：跟随强调色，不再用绿色 -->
+                    <SolidColorBrush x:Key="DropFill" Color="#E6152433" />
+                    <SolidColorBrush x:Key="DropStroke" Color="#C04CC2FF" />
+                    <SolidColorBrush x:Key="DropText" Color="#FFEAF6FF" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Light">
+                    <LinearGradientBrush x:Key="PillFill" StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Offset="0" Color="#D9FFFFFF" />
+                        <GradientStop Offset="1" Color="#C4FFFFFF" />
+                    </LinearGradientBrush>
+                    <LinearGradientBrush x:Key="PillFillHover" StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Offset="0" Color="#EDFFFFFF" />
+                        <GradientStop Offset="1" Color="#DAFFFFFF" />
+                    </LinearGradientBrush>
+                    <SolidColorBrush x:Key="PillStrokeIdle" Color="#22000000" />
+                    <SolidColorBrush x:Key="PillStrokeHover" Color="#3D000000" />
+
+                    <SolidColorBrush x:Key="PillBackdrop" Color="#E7EDEE" />
+
+                    <SolidColorBrush x:Key="PanelFill" Color="#E1F9F9FB" />
+                    <SolidColorBrush x:Key="PanelStroke" Color="#24000000" />
+                    <SolidColorBrush x:Key="CardFill" Color="#14000000" />
+
+                    <SolidColorBrush x:Key="MutedForeground" Color="#63676E" />
+                    <SolidColorBrush x:Key="SnippetForeground" Color="#4E5057" />
+                    <SolidColorBrush x:Key="StrongForeground" Color="#1B1C1F" />
+                    <Color x:Key="PillPlaceholderColor">#FF5F6368</Color>
+
+                    <SolidColorBrush x:Key="HoverFill" Color="#0F000000" />
+                    <SolidColorBrush x:Key="SelectedFill" Color="#1A000000" />
+                    <SolidColorBrush x:Key="BadgeFill" Color="#0E000000" />
+                    <SolidColorBrush x:Key="DividerFill" Color="#14000000" />
+                    <SolidColorBrush x:Key="HighlightForeground" Color="#0B62C4" />
+
+                    <SolidColorBrush x:Key="DropFill" Color="#E6EEF5FC" />
+                    <SolidColorBrush x:Key="DropStroke" Color="#C0005FB8" />
+                    <SolidColorBrush x:Key="DropText" Color="#FF0B2A4A" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

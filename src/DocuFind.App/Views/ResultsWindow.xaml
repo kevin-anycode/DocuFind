@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="DocuFind.App.Views.ResultsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid x:Name="RootGrid" Background="Transparent">
+        <Border CornerRadius="8"
+                Background="{ThemeResource PanelFill}"
+                BorderBrush="{ThemeResource PanelStroke}"
+                BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <ScrollViewer x:Name="ResultsScroller"
+                                  Padding="6,6,6,4"
+                                  VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="ResultsStack" Spacing="2" />
+                    </ScrollViewer>
+
+                    <StackPanel x:Name="EmptyPanel"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Spacing="6"
+                                Margin="28,0">
+                        <FontIcon Glyph="&#xE721;"
+                                  FontSize="30"
+                                  Foreground="{ThemeResource MutedForeground}"
+                                  Opacity="0.55"
+                                  HorizontalAlignment="Center"
+                                  Margin="0,0,0,6" />
+                        <TextBlock x:Name="EmptyTitle"
+                                   Text="把文件拖到搜索框上"
+                                   FontSize="13.5"
+                                   FontWeight="SemiBold"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Foreground="{ThemeResource StrongForeground}" />
+                        <TextBlock x:Name="EmptyDetail"
+                                   Text="之后就能在这里搜到文件里的任何内容"
+                                   FontSize="12"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Foreground="{ThemeResource MutedForeground}" />
+                        <TextBlock Text="支持 PDF · Word · Excel · PPT · TXT"
+                                   FontSize="11.5"
+                                   Margin="0,6,0,0"
+                                   Opacity="0.6"
+                                   TextAlignment="Center"
+                                   Foreground="{ThemeResource MutedForeground}" />
+                        <TextBlock Text="Ctrl+O 选择文件 · Ctrl+Alt+Space 随时呼出"
+                                   FontSize="11.5"
+                                   Opacity="0.6"
+                                   TextAlignment="Center"
+                                   Foreground="{ThemeResource MutedForeground}" />
+                    </StackPanel>
+
+                    <!-- 重名确认卡片 -->
+                    <Border x:Name="ConflictCard"
+                            Visibility="Collapsed"
+                            Margin="16"
+                            Padding="16,14,16,14"
+                            CornerRadius="8"
+                            Background="{ThemeResource CardFill}"
+                            BorderBrush="{ThemeResource PanelStroke}"
+                            BorderThickness="1"
+                            VerticalAlignment="Center">
+                        <Border.Transitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition FromVerticalOffset="10" IsStaggeringEnabled="False" />
+                            </TransitionCollection>
+                        </Border.Transitions>
+
+                        <StackPanel Spacing="8">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <FontIcon Glyph="&#xE8B4;"
+                                          FontSize="14"
+                                          Foreground="{ThemeResource HighlightForeground}"
+                                          VerticalAlignment="Center" />
+                                <TextBlock x:Name="ConflictTitle"
+                                           Text="已存在同名文档"
+                                           FontSize="13"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center"
+                                           Foreground="{ThemeResource StrongForeground}" />
+                            </StackPanel>
+                            <TextBlock x:Name="ConflictDetail"
+                                       FontSize="12"
+                                       LineHeight="18"
+                                       TextWrapping="Wrap"
+                                       Foreground="{ThemeResource MutedForeground}" />
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="8"
+                                        Margin="0,6,0,0"
+                                        HorizontalAlignment="Right">
+                                <Button x:Name="SkipButton" Content="跳过" Click="OnConflictSkip" />
+                                <Button x:Name="OverwriteButton" Content="覆盖" Click="OnConflictOverwrite" />
+                                <Button x:Name="KeepBothButton"
+                                        Content="保留两份"
+                                        Style="{StaticResource AccentButtonStyle}"
+                                        Click="OnConflictKeepBoth" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <Border Grid.Row="1"
+                        BorderBrush="{ThemeResource DividerFill}"
+                        BorderThickness="0,1,0,0"
+                        Padding="14,7,12,9">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock x:Name="FooterText"
+                                   FontSize="11.5"
+                                   Foreground="{ThemeResource MutedForeground}"
+                                   VerticalAlignment="Center"
+                                   TextTrimming="CharacterEllipsis" />
+
+                        <TextBlock x:Name="StatusText"
+                                   Grid.Column="1"
+                                   FontSize="11.5"
+                                   Foreground="{ThemeResource HighlightForeground}"
+                                   VerticalAlignment="Center"
+                                   TextTrimming="CharacterEllipsis"
+                                   MaxWidth="300" />
+
+                        <TextBlock Grid.Column="2"
+                                   Text="↑↓ 选择 · Enter 打开 · Esc 清空"
+                                   FontSize="11.5"
+                                   Foreground="{ThemeResource MutedForeground}"
+                                   Opacity="0.75"
+                                   VerticalAlignment="Center" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

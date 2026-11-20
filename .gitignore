@@ -1,0 +1,12 @@
+bin/
+obj/
+*.user
+.vs/
+
+# 模型体积较大，用 tools/fetch-model.ps1 拉取
+models/
+
+# 本地索引
+*.db
+*.db-shm
+*.db-wal

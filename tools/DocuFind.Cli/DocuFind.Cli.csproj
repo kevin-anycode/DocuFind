@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>DocuFind.Cli</RootNamespace>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\DocuFind.Core\DocuFind.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="Exists('..\..\models\bge-small-zh-v1.5-int8.onnx')">
+    <Content Include="..\..\models\bge-small-zh-v1.5-int8.onnx" Link="models\bge-small-zh-v1.5-int8.onnx" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\models\vocab.txt" Link="models\vocab.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\samples\*" Link="samples\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="100%" role="img" aria-label="DocuFind：住在任务栏里的本地文档搜索框">
+  <title>DocuFind：住在任务栏里的本地文档搜索框</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0C0F12"/>
+      <stop offset="1" stop-color="#12161B"/>
+    </linearGradient>
+    <linearGradient id="pill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#434A4E"/>
+      <stop offset="1" stop-color="#363C40"/>
+    </linearGradient>
+    <clipPath id="frame">
+      <rect width="1200" height="340" rx="16"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="340" fill="url(#bg)"/>
+
+    <!-- 左：名称与一句话 -->
+    <text x="76" y="78" font-family="Segoe UI, Microsoft YaHei UI, PingFang SC, sans-serif"
+          font-size="17" letter-spacing="2.4" fill="#78828C">WINDOWS 11 · 全本地 · 无 GPU</text>
+
+    <text x="72" y="156" font-family="Segoe UI, Microsoft YaHei UI, PingFang SC, sans-serif"
+          font-size="66" font-weight="600" fill="#F4F6F8">DocuFind</text>
+
+    <text x="76" y="196" font-family="Segoe UI, Microsoft YaHei UI, PingFang SC, sans-serif"
+          font-size="22" fill="#8E98A2">文档秒查 — 把文档拖进任务栏，</text>
+
+    <text x="76" y="226" font-family="Segoe UI, Microsoft YaHei UI, PingFang SC, sans-serif"
+          font-size="22" fill="#C2C9D1">之后一句话，搜到里面任何内容。</text>
+
+    <!-- 参数胶囊 -->
+    <g font-family="Segoe UI, Microsoft YaHei UI, PingFang SC, sans-serif" font-size="18" fill="#9AA4AE">
+      <rect x="76" y="250" width="222" height="34" rx="17" fill="#161B20" stroke="#242B31"/>
+      <text x="98" y="273">PDF · Word · Excel · PPT</text>
+
+      <rect x="312" y="250" width="128" height="34" rx="17" fill="#161B20" stroke="#242B31"/>
+      <text x="334" y="273" fill="#7FD3FF">1–22 ms</text>
+
+      <rect x="454" y="250" width="158" height="34" rx="17" fill="#161B20" stroke="#242B31"/>
+      <text x="476" y="273">离线 · 不联网</text>
+    </g>
+
+    <!-- 结果卡：从胶囊升起来 -->
+    <rect x="760" y="86" width="400" height="120" rx="12" fill="#15191E" stroke="#272E35"/>
+    <rect x="778" y="106" width="3" height="80" rx="1.5" fill="#4CC2FF"/>
+
+    <g font-family="Segoe UI, Microsoft YaHei UI, PingFang SC, sans-serif">
+      <text x="798" y="132" font-size="21" font-weight="600" fill="#F2F4F6">员工手册.md</text>
+      <text x="1094" y="132" font-size="15" fill="#8D97A1">第 3 页</text>
+
+      <text x="798" y="164" font-size="17" fill="#AEB6BE">…入职满一年享有 5 天带薪</text>
+      <text x="798" y="188" font-size="17" fill="#7FD3FF" font-weight="600">年假</text>
+      <text x="834" y="188" font-size="17" fill="#AEB6BE">，满三年 10 天…</text>
+    </g>
+
+    <path d="M 1010 206 L 1010 286" stroke="#2C343B" stroke-width="1.5" stroke-dasharray="3 4"/>
+
+    <!-- 任务栏 -->
+    <rect x="0" y="286" width="1200" height="54" fill="#10151A"/>
+    <rect x="0" y="286" width="1200" height="1" fill="#232B32"/>
+
+    <g fill="#252C32">
+      <rect x="48" y="297" width="32" height="32" rx="7"/>
+      <rect x="88" y="297" width="32" height="32" rx="7"/>
+      <rect x="128" y="297" width="32" height="32" rx="7"/>
+      <rect x="168" y="297" width="32" height="32" rx="7"/>
+    </g>
+
+    <!-- 胶囊 -->
+    <rect x="860" y="297" width="300" height="32" rx="16" fill="url(#pill)" stroke="#4C545A"/>
+
+    <g stroke="#E9EBEE" stroke-width="1.7" fill="none" stroke-linecap="round">
+      <circle cx="884" cy="312.5" r="6.2"/>
+      <path d="M 888.6 317.2 L 892.4 321"/>
+    </g>
+
+    <text x="906" y="319" font-family="Segoe UI, Microsoft YaHei UI, PingFang SC, sans-serif"
+          font-size="16" fill="#CFD4D9">搜索文档内容</text>
+
+    <g stroke="#B9C0C7" stroke-width="1.5" fill="none" stroke-linejoin="round">
+      <path d="M 1132 305 h 13 v 16 l -4 -3 h -9 z"/>
+    </g>
+  </g>
+</svg>
