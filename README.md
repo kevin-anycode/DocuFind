@@ -209,3 +209,16 @@ assets/readme/              README 配图
 - [ ] Inno Setup 安装包（自包含运行时，内嵌模型）
 - [ ] 扫描件 OCR
 - [ ] 结果面板也换成和胶囊同一套材质（目前面板底偏实，纯为可读性）
+
+## 打赏
+
+如果这个小工具帮你省下过找文件的时间，可以请我喝杯咖啡 ☕
+
+<table>
+  <tr>
+    <td align="center"><img src="assets/readme/reward/wechat.png" width="230" alt="微信赞赏码"><br><sub>微信</sub></td>
+    <td align="center"><img src="assets/readme/reward/alipay.png" width="230" alt="支付宝赞赏码"><br><sub>支付宝</sub></td>
+  </tr>
+</table>
+
+打赏随意，不给也完全不影响使用——它一直是免费、开源的。
