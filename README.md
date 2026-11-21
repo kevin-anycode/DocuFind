@@ -216,8 +216,7 @@ assets/readme/              README 配图
 
 <table>
   <tr>
-    <td align="center"><img src="assets/readme/reward/wechat.png" width="230" alt="微信赞赏码"><br><sub>微信</sub></td>
-    <td align="center"><img src="assets/readme/reward/alipay.png" width="230" alt="支付宝赞赏码"><br><sub>支付宝</sub></td>
+    <td align="center"><img src="assets/readme/reward/wechat.png" width="230" alt="微信赞赏码"><br><sub>微信扫码，金额随意</sub></td>
   </tr>
 </table>
 
