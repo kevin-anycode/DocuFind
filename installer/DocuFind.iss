@@ -44,6 +44,7 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 UninstallDisplayName={#MyAppName}
 UninstallDisplayIcon={app}\{#MyAppExeName}
+SetupIconFile=..\assets\icon\app.ico
 CloseApplications=yes
 AppMutex=Local\DocuFind.SingleInstance
 SetupLogging=yes
