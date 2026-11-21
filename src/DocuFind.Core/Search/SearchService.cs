@@ -34,6 +34,13 @@ public sealed class SearchService
     /// </summary>
     private const double MinVectorScore = 0.42;
 
+    /// <summary>
+    /// 关键词已经命中时，向量通道补充上下文的门槛。
+    /// 这时答案基本已经有了，多出来的只应该是"同一件事的另一段"，
+    /// 所以把绝对值抬到 0.50、相对值抬到最好分×0.95，并且最多补 2 条。
+    /// </summary>
+    private const double KeywordAugmentScore = 0.50;
+
     private static readonly Regex TermSplitter = new(
         @"[\s,，。;；、|/\\()\[\]{}<>""'“”‘’《》【】!?！？:：]+",
         RegexOptions.Compiled);
@@ -59,6 +66,11 @@ public sealed class SearchService
 
         var terms = SplitTerms(query);
 
+        // 关键词这一路先跑：它命中的东西基本可以确信是对的，
+        // 后面用它的有无来决定向量通道该"松"还是"紧"。
+        var keywordIds = _database.SearchKeyword(terms, ChannelLimit);
+        var hasKeyword = keywordIds.Count > 0;
+
         var vectorIds = new List<long>();
         if (_embedder.IsAvailable && _vectors.Count > 0)
         {
@@ -67,16 +79,22 @@ public sealed class SearchService
                 var queryVector = _embedder.Embed(query, EmbedKind.Query);
                 var vectorRanked = _vectors.TopK(queryVector, ChannelLimit);
 
-                // 两个门槛一起用：
-                // 1) 绝对值 0.42 —— 挡住"随便打点字也有一堆结果"；
-                // 2) 相对值 最好分 × 0.82 —— 第一名明显靠谱时，把后面明显凑数的尾巴剪掉。
-                var cutoff = MinVectorScore;
-                if (vectorRanked.Count > 0) cutoff = Math.Max(cutoff, vectorRanked[0].Score * 0.82);
+                // 关键词已经命中了：向量这一路只当"补充上下文"，
+                // 门槛抬到 0.50 / 最好分×0.95，而且最多补 2 条——
+                // 否则「考勤时间」这种词会把只沾一点边的方案文档也带出来。
+                // 关键词没命中：向量是唯一线索，用 0.42 / ×0.86 的常规门槛。
+                var absolute = hasKeyword ? KeywordAugmentScore : MinVectorScore;
+                var relative = hasKeyword ? 0.95 : 0.86;
+                var limit = hasKeyword ? 2 : int.MaxValue;
+
+                var cutoff = absolute;
+                if (vectorRanked.Count > 0) cutoff = Math.Max(absolute, vectorRanked[0].Score * relative);
 
                 foreach (var (id, score) in vectorRanked)
                 {
                     if (score < cutoff) break; // TopK 已按分数降序
                     vectorIds.Add(id);
+                    if (vectorIds.Count >= limit) break;
                 }
             }
             catch
@@ -85,7 +103,6 @@ public sealed class SearchService
             }
         }
 
-        var keywordIds = _database.SearchKeyword(terms, ChannelLimit);
         cancellationToken.ThrowIfCancellationRequested();
 
         var scores = new Dictionary<long, double>();
