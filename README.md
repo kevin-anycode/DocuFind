@@ -14,11 +14,14 @@
 
 ## 下载安装
 
-> **Windows 11 x64 · 71.7 MB · 免管理员**
+> **Windows 11 x64 · 71.8 MB · 免管理员**
 >
-> **⬇ [下载 DocuFind-Setup-1.0.0.exe](https://gitee.com/kevin-anycode/DocuFind/releases/download/v1.0.0/DocuFind-Setup-1.0.0.exe)**
+> **⬇ [下载 DocuFind-Setup-1.0.0.exe](https://github.com/kevin-anycode/DocuFind/releases/download/v1.0.0/DocuFind-Setup-1.0.0.exe)**
 >
 > 双击安装 → 开始菜单出现「DocuFind」→ 打开后把文件拖到胶囊上就能搜了。
+
+仓库有两个入口，源码同步：[GitHub](https://github.com/kevin-anycode/DocuFind) · [Gitee](https://gitee.com/kevin-anycode/DocuFind)
+（国内网络打不开 GitHub 的话，用 Gitee 的发行版下载安装包。）
 
 - 装到 `%LOCALAPPDATA%\Programs\DocuFind`，不需要管理员权限，也不会动系统目录
 - **自带 .NET 8 和 Windows App SDK 运行时**，目标机器不用另装任何东西
